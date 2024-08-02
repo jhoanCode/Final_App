@@ -110,7 +110,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
               DropdownButton<String>(
                 hint: Text('Selecciona el motivo de la visita'),
                 value: _selectedMotivo,
-                items: <String>['Motivo 1', 'Motivo 2'].map((String value) {
+                items: <String>[' Inspección Técnica', 'Evaluación Docente','Asesoramiento Tecnico'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
