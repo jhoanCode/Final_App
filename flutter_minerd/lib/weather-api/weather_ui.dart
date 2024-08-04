@@ -48,6 +48,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         double lat = double.parse(_latitudController.text);
         double lon = double.parse(_longitudController.text);
 
+        //weatherData = await _weatherService.fetchWeather(lat, lon, DateTime.now());
         weatherData = await _weatherService.fetchWeather(lat, lon, DateTime.now());
 
         setState(() {
