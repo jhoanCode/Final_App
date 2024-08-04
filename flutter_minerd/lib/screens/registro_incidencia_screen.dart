@@ -56,7 +56,9 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registrar Incidencia'),
+        title: const Text('Registrar Incidencia',style: TextStyle(color: Colors.white),
+        ),
+         backgroundColor: Colors.blue[900],
       ),
       body: Form(
         key: _formKey,

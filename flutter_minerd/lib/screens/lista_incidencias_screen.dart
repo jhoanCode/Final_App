@@ -23,7 +23,9 @@ class _ListaIncidenciasScreenState extends State<ListaIncidenciasScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Incidencias'),
+        title: const Text('Lista de Incidencias',style: TextStyle(color: Colors.white),
+        ),
+         backgroundColor: Colors.blue[900],
       ),
       body: FutureBuilder<List<Incidencia>>(
         future: _incidenciasFuture,
