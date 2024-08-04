@@ -1,7 +1,4 @@
-//import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'weather_service.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -50,7 +47,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
         // Obtener latitud y longitud del lugar ingresado (puedes usar un servicio de geocodificación como Google Maps Geocoding API)
         double lat = double.parse(_latitudController.text);
         double lon = double.parse(_longitudController.text);
-        DateTime hora = DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, _selectedTime.hour);
 
         weatherData = await _weatherService.fetchWeather(lat, lon, DateTime.now());
 
