@@ -9,7 +9,9 @@ class VisitsListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Visitas Registradas'),
+        title: Text('Visitas Registradas', style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue[900],
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: dbHelper.getVisitas(),

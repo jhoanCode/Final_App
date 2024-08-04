@@ -50,6 +50,8 @@ class _TechHomepageState extends State<TechHomepage> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
+        unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.blue[900],
         onTap: _onItemTapped,
       ),
     );
