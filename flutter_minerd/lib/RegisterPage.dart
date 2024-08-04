@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
         Navigator.pushReplacementNamed(
           context,
-          selectedRole == 'Usuario' ? '/user_home' : '/tech_home',
+          selectedRole == 'Usuario' ? '/home_screen' : '/tech_home',
         );
       } catch (e) {
         setState(() {

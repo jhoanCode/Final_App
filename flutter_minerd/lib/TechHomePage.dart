@@ -1,42 +1,56 @@
 import 'package:flutter/material.dart';
 import 'RegisterVisitPage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'AboutPage.dart';
+import 'ListaVisitasPage.dart';
+import 'RegisterLocationPage.dart';
 
-class TechHomePage extends StatelessWidget {
+class TechHomepage extends StatefulWidget {
+  @override
+  _TechHomepageState createState() => _TechHomepageState();
+}
+
+class _TechHomepageState extends State<TechHomepage> {
+  int _selectedIndex = 0;
+
+  static List<Widget> _widgetOptions = <Widget>[
+    VisitsListPage(),
+    RegisterVisitPage(),
+    RegisterLocationPage(), 
+    AboutPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Inicio Técnico'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.remove('isLoggedIn');
-              Navigator.pushReplacementNamed(context, '/');
-            },
+      body: _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Visitas',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Registrar',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Mapa',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About Me',
           ),
         ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Bienvenido, Técnico!'),
-            SizedBox(height: 20),
-            ElevatedButton.icon(
-              icon: Icon(Icons.add_location),
-              label: Text('Registrar Visita'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegisterVisitPage()),
-                );
-              },
-            ),
-          ],
-        ),
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart'; 
-import 'DatabaseHelper.dart';
+import '../utils/database_helper.dart';
 
 class RegisterVisitPage extends StatefulWidget {
   @override
@@ -18,8 +18,6 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
   File? _image;
   String? _selectedMotivo;
   Position? _position;
-  DateTime? _fecha;
-  String? _recordingPath;
 
   @override
   void initState() {
@@ -60,16 +58,13 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
         'motivo': _selectedMotivo,
         'comentario': comentarioController.text,
         'imagePath': _image?.path,
-        'latitud': _position?.latitude,
-        'longitud': _position?.longitude,
         'fecha': formattedDate,
         'hora': formattedTime,
       };
 
-      final dbHelper = DatabaseHelper();  
+      final dbHelper = DatabaseHelper.instance; 
       await dbHelper.insertVisita(visitData);
 
-      
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Visita registrada')));
     }
   }
@@ -110,7 +105,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
               DropdownButton<String>(
                 hint: Text('Selecciona el motivo de la visita'),
                 value: _selectedMotivo,
-                items: <String>[' Inspección Técnica', 'Evaluación Docente','Asesoramiento Tecnico'].map((String value) {
+                items: <String>['Inspección Técnica', 'Evaluación Docente', 'Asesoramiento Técnico'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -135,11 +130,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
                 onPressed: _saveVisit,
                 child: Text('Registrar Visita'),
               ),
-              if (_position != null) ...[
-                Text('Latitud: ${_position!.latitude}'),
-                Text('Longitud: ${_position!.longitude}'),
-              ],
-              
+             
             ],
           ),
         ),

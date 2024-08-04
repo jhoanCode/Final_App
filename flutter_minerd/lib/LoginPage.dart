@@ -46,10 +46,11 @@ class _LoginPageState extends State<LoginPage> {
         String role = users.first['role'];
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLoggedIn', true);
+        await prefs.setString('userRole', role);  
 
         Navigator.pushReplacementNamed(
           context,
-          role == 'Técnico' ? '/tech_home' : '/user_home',
+          role == 'Técnico' ? '/tech_home' : '/home_screen',
         );
       } else {
         setState(() {
