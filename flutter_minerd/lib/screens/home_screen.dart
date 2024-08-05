@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'RegisterVisitPage.dart';
-import 'AboutPage.dart';
-import 'ListaVisitasPage.dart';
-import 'RegisterLocationPage.dart';
+import 'registro_incidencia_screen.dart';
+import 'lista_incidencias_screen.dart';
 
-class TechHomepage extends StatefulWidget {
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
-  _TechHomepageState createState() => _TechHomepageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _TechHomepageState extends State<TechHomepage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    VisitsListPage(),
-    RegisterVisitPage(),
-    RegisterLocationPage(), 
-    AboutPage(),
+    ListaIncidenciasScreen(),
+    RegistroIncidenciaScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -28,30 +27,21 @@ class _TechHomepageState extends State<TechHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'Visitas',
+            label: 'Incidencias',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Registrar',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Mapa',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About Me',
-          ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
-        unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
-        backgroundColor: Colors.blue[900],
         onTap: _onItemTapped,
       ),
     );

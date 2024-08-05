@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
         Navigator.pushReplacementNamed(
           context,
-          selectedRole == 'Usuario' ? '/user_home' : '/tech_home',
+          selectedRole == 'Usuario' ? '/home_screen' : '/tech_home',
         );
       } catch (e) {
         setState(() {
@@ -63,6 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro'),
+        backgroundColor: Colors.blue[900],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -73,7 +74,16 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingresa tu email';
@@ -83,9 +93,19 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 20),
               TextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -97,8 +117,17 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
               ),
               SizedBox(height: 20),
-              DropdownButton<String>(
-                hint: Text('Selecciona tu rol'),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'Selecciona tu rol',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 value: selectedRole,
                 items: <String>['Usuario', 'Técnico'].map((String value) {
                   return DropdownMenuItem<String>(
@@ -111,6 +140,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     selectedRole = newValue;
                   });
                 },
+                validator: (value) {
+                  if (value == null) {
+                    return 'Por favor selecciona tu rol';
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20),
               if (errorMessage != null)
@@ -118,6 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   errorMessage!,
                   style: TextStyle(color: Colors.red),
                 ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -125,6 +161,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   }
                 },
                 child: Text('Registrarse'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                  foregroundColor: Colors.white,
+                ),
               ),
             ],
           ),

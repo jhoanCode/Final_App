@@ -46,10 +46,11 @@ class _LoginPageState extends State<LoginPage> {
         String role = users.first['role'];
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLoggedIn', true);
+        await prefs.setString('userRole', role);
 
         Navigator.pushReplacementNamed(
           context,
-          role == 'Técnico' ? '/tech_home' : '/user_home',
+          role == 'Técnico' ? '/tech_home' : '/home_screen',
         );
       } else {
         setState(() {
@@ -63,9 +64,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blue[900],
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/icono.png'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.blue.withOpacity(0.2),
+              BlendMode.dstATop,
+            ),
+          ),
+        ),
         padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -74,7 +86,16 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               TextFormField(
                 controller: emailController,
-                decoration: InputDecoration(labelText: 'Email'),
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Por favor ingresa tu email';
@@ -84,9 +105,19 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              SizedBox(height: 20),
               TextFormField(
                 controller: passwordController,
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -103,19 +134,24 @@ class _LoginPageState extends State<LoginPage> {
                   errorMessage!,
                   style: TextStyle(color: Colors.red),
                 ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _login(context); 
+                    _login(context);
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.blue[900],
+                ),
                 child: Text('Login'),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/register');
                 },
-                child: Text('Registrarse'),
+                child: Text('Registrarse', style: TextStyle(color: Colors.blue[900])),
               ),
             ],
           ),
