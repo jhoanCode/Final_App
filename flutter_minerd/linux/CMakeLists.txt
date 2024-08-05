@@ -1,5 +1,7 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.10)
+set ( CMAKE_CXX_COMPILER "/usr/bin/g++" )
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 project(runner LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change

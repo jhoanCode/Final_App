@@ -14,7 +14,7 @@ class WeatherService {
     if (response.statusCode == 200) {
       var res = json.decode(response.body);
       List wHora = res["hourly"]["time"];
-      dynamic h = date.toIso8601String().substring(0, 14) + "00";
+      dynamic h = "${date.toIso8601String().substring(0, 14)}00";
       h = wHora.indexOf(h);
       if (h < 0){
         throw Exception('No se encontró la hora especificada');
