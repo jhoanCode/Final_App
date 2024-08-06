@@ -45,7 +45,7 @@ class MenuPage extends StatelessWidget {
           },
         ),
         MenuButton(
-          icon: Icons.stars,
+          icon: Icons.article,
           label: 'Noticias',
           onTap: () {
             Navigator.push(
@@ -64,7 +64,6 @@ class MenuButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
 
-  // ignore: use_key_in_widget_constructors
   const MenuButton({required this.icon, required this.label, required this.onTap});
 
   @override

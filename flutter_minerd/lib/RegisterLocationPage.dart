@@ -8,8 +8,8 @@ class RegisterLocationPage extends StatefulWidget {
 
 class _RegisterLocationPageState extends State<RegisterLocationPage> {
   final _formKey = GlobalKey<FormState>();
-  final _latitudeController = TextEditingController();
-  final _longitudeController = TextEditingController();
+  final _latitudeController = TextEditingController(text: "18.46620");
+  final _longitudeController = TextEditingController(text: "-69.93435");
 
   @override
   void dispose() {
