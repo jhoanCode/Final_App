@@ -16,16 +16,61 @@ class _ListaIncidenciasScreenState extends State<ListaIncidenciasScreen> {
   @override
   void initState() {
     super.initState();
-    _incidenciasFuture = DatabaseHelper.instance.getIncidencias();
+    _refreshIncidencias();
+  }
+
+  void _refreshIncidencias() {
+    setState(() {
+      _incidenciasFuture = DatabaseHelper.instance.getIncidencias();
+    });
+  }
+
+  Future<void> _deleteIncidencia(int id) async {
+    await DatabaseHelper.instance.deleteIncidencia(id);
+    _refreshIncidencias();
+  }
+
+  Future<void> _deleteAllIncidencias() async {
+    await DatabaseHelper.instance.deleteAllIncidencias();
+    _refreshIncidencias();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista de Incidencias',style: TextStyle(color: Colors.white),
-        ),
-         backgroundColor: Colors.blue[900],
+        title: const Text('Lista de Incidencias'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete_forever),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Borrar todas las incidencias'),
+                    content: Text('¿Estás seguro de que quieres borrar todas las incidencias?'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: Text('Cancelar'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: Text('Borrar'),
+                        onPressed: () {
+                          _deleteAllIncidencias();
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<Incidencia>>(
         future: _incidenciasFuture,
@@ -41,17 +86,51 @@ class _ListaIncidenciasScreenState extends State<ListaIncidenciasScreen> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 final incidencia = snapshot.data![index];
-                return ListTile(
-                  title: Text(incidencia.titulo),
-                  subtitle: Text('${incidencia.centroEducativo} - ${incidencia.fecha.toLocal().toString().split(' ')[0]}'),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetalleIncidenciaScreen(incidencia: incidencia),
-                      ),
+                return Dismissible(
+                  key: Key(incidencia.id.toString()),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Icon(Icons.delete, color: Colors.white),
+                  ),
+                  confirmDismiss: (direction) async {
+                    return await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Borrar incidencia'),
+                          content: Text('¿Estás seguro de que quieres borrar esta incidencia?'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text('Cancelar'),
+                              onPressed: () => Navigator.of(context).pop(false),
+                            ),
+                            TextButton(
+                              child: Text('Borrar'),
+                              onPressed: () => Navigator.of(context).pop(true),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
+                  onDismissed: (direction) {
+                    _deleteIncidencia(incidencia.id!);
+                  },
+                  child: ListTile(
+                    title: Text(incidencia.titulo),
+                    subtitle: Text('${incidencia.centroEducativo} - ${incidencia.fecha.toLocal().toString().split(' ')[0]}'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetalleIncidenciaScreen(incidencia: incidencia),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             );

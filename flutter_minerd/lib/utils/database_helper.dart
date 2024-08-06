@@ -98,6 +98,11 @@ class DatabaseHelper {
     );
   }
 
+  Future<int> deleteAllIncidencias() async {
+    final db = await instance.database;
+    return await db.delete('incidencias');
+  }
+
   // Métodos para manejar la tabla de visitas
   Future<void> insertVisita(Map<String, dynamic> row) async {
     final db = await instance.database;
@@ -142,4 +147,10 @@ class DatabaseHelper {
       whereArgs: [id],
     );
   }
+
+  Future<int> deleteAllVisitas() async {
+    final db = await instance.database;
+    return await db.delete('visitas');
+  }
 }
+
