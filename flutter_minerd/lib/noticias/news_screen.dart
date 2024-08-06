@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'news_detail_screen.dart';
-import 'news_provider.dart';
+import 'news_model.dart';
+import 'news_service.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({super.key});
@@ -11,29 +12,54 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
+  List<News> _newsList = [];
+  bool _isLoading = false;
+
+  List<News> get newsList => _newsList;
+  bool get isLoading => _isLoading;
+
+  Future<void> fetchNews() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      var data = await NewsService().fetchNews();
+      print(data);
+
+      setState(() {
+        _newsList = data;
+      });
+    } catch (error) {
+      // Handle error
+      _newsList = [];
+      print("Error: " + error.toString());
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
   @override
   void initState() {
     super.initState();
-    // Fetch news when the screen is initialized
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<NewsProvider>(context, listen: false).fetchNews();
-    });
+    fetchNews();
   }
 
   @override
   Widget build(BuildContext context) {
-    final newsProvider = Provider.of<NewsProvider>(context);
+    //final newsProvider = Provider.of<NewsProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Noticias MINERD'),
       ),
-      body: newsProvider.isLoading
+      body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: newsProvider.newsList.length,
+              itemCount: newsList.length,
               itemBuilder: (context, index) {
-                final news = newsProvider.newsList[index];
+                final news = newsList[index];
                 return Card(
                   margin: const EdgeInsets.all(10.0),
                   color: Colors.black,

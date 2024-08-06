@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_minerd/noticias/news_screen.dart';
+import 'noticias/news_screen.dart';
 import 'RegisterVisitPage.dart';
 import 'weather_screen.dart';
 import 'horoscope_screen.dart';
