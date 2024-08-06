@@ -3,6 +3,7 @@ import 'RegisterVisitPage.dart';
 import 'AboutPage.dart';
 import 'ListaVisitasPage.dart';
 import 'RegisterLocationPage.dart';
+import 'MenuPage.dart'; 
 
 class TechHomepage extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _TechHomepageState extends State<TechHomepage> {
 
   static List<Widget> _widgetOptions = <Widget>[
     VisitsListPage(),
-    RegisterVisitPage(),
+    MenuPage(),  
     RegisterLocationPage(), 
     AboutPage(),
   ];
@@ -36,8 +37,8 @@ class _TechHomepageState extends State<TechHomepage> {
             label: 'Visitas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Registrar',
+            icon: Icon(Icons.menu),
+            label: 'Menú',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
@@ -45,7 +46,7 @@ class _TechHomepageState extends State<TechHomepage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            label: 'About Me',
+            label: 'Video',
           ),
         ],
         currentIndex: _selectedIndex,

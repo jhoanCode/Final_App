@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart'; 
 import '../utils/database_helper.dart';
+import 'ListaVisitasPage.dart'; 
 
 class RegisterVisitPage extends StatefulWidget {
   @override
@@ -66,6 +67,12 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
       await dbHelper.insertVisita(visitData);
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Visita registrada')));
+      
+      
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => VisitsListPage()),
+      );
     }
   }
 
@@ -147,7 +154,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[900],
                 ),
-                child: Text('Adjuntar Foto', style: TextStyle(color: Colors.black),),
+                child: Text('Adjuntar Foto', style: TextStyle(color: Colors.black)),
               ),
               SizedBox(height: 10),
               _image != null ? Image.file(_image!) : Container(),
@@ -171,7 +178,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[900],
                 ),
-                child: Text('Registrar Visita', style: TextStyle(color: Colors.black),),
+                child: Text('Registrar Visita', style: TextStyle(color: Colors.black)),
               ),
             ],
           ),
