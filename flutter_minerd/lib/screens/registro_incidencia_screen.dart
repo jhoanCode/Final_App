@@ -67,7 +67,16 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
           children: [
             TextFormField(
               controller: _tituloController,
-              decoration: const InputDecoration(labelText: 'Título'),
+              decoration: InputDecoration(
+                  labelText: 'Título',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor ingrese un título';
@@ -77,7 +86,16 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
             ),
             TextFormField(
               controller: _centroEducativoController,
-              decoration: const InputDecoration(labelText: 'Centro Educativo'),
+              decoration: InputDecoration(
+                  labelText: 'Centro Educativo',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor ingrese el centro educativo';
@@ -87,7 +105,16 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
             ),
             TextFormField(
               controller: _regionalController,
-              decoration: const InputDecoration(labelText: 'Regional'),
+              decoration: InputDecoration(
+                  labelText: 'Regional',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor ingrese la regional';
@@ -97,7 +124,16 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
             ),
             TextFormField(
               controller: _distritoController,
-              decoration: const InputDecoration(labelText: 'Distrito'),
+              decoration: InputDecoration(
+                  labelText: 'Distrito',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor ingrese el distrito';
@@ -113,7 +149,16 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
             ),
             TextFormField(
               controller: _descripcionController,
-              decoration: const InputDecoration(labelText: 'Descripción'),
+              decoration: InputDecoration(
+                  labelText: 'Descripción',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
               maxLines: 3,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -125,7 +170,10 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: getImage,
-              child: const Text('Seleccionar Foto'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                ),
+              child: const Text('Seleccionar Foto',style: TextStyle(color: Colors.white)),
             ),
             if (_image != null)
               Padding(
@@ -135,7 +183,10 @@ class _RegistroIncidenciaScreenState extends State<RegistroIncidenciaScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _submitForm,
-              child: const Text('Guardar Incidencia'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                ),
+              child: const Text('Guardar Incidencia',style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

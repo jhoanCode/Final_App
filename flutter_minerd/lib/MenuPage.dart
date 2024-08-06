@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'noticias/news_screen.dart';
 import 'RegisterVisitPage.dart';
 import 'weather_screen.dart';
 import 'horoscope_screen.dart';
 
 class MenuPage extends StatelessWidget {
+  const MenuPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       children: <Widget>[
         MenuButton(
           icon: Icons.add,
@@ -26,7 +29,7 @@ class MenuPage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => WeatherScreen()),
+              MaterialPageRoute(builder: (context) => const WeatherScreen()),
             );
           },
         ),
@@ -36,7 +39,17 @@ class MenuPage extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HoroscopeScreen()),
+              MaterialPageRoute(builder: (context) => const HoroscopeScreen()),
+            );
+          },
+        ),
+        MenuButton(
+          icon: Icons.article,
+          label: 'Noticias',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const NewsScreen()),
             );
           },
         ),
@@ -58,15 +71,15 @@ class MenuButton extends StatelessWidget {
       onTap: onTap,
       child: Card(
         elevation: 2,
-        margin: EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(icon, size: 50, color: Colors.blue),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               label,
-              style: TextStyle(fontSize: 16, color: Colors.blue),
+              style: const TextStyle(fontSize: 16, color: Colors.blue),
             ),
           ],
         ),

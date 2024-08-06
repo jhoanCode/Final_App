@@ -154,7 +154,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[900],
                 ),
-                child: Text('Adjuntar Foto', style: TextStyle(color: Colors.black)),
+                child: Text('Adjuntar Foto', style: TextStyle(color: Colors.white)),
               ),
               SizedBox(height: 10),
               _image != null ? Image.file(_image!) : Container(),
@@ -178,7 +178,7 @@ class _RegisterVisitPageState extends State<RegisterVisitPage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[900],
                 ),
-                child: Text('Registrar Visita', style: TextStyle(color: Colors.black)),
+                child: Text('Registrar Visita', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

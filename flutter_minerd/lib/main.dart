@@ -31,9 +31,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         '/register': (context) => RegisterPage(),
-        '/home_screen': (context) => HomePage(),  
+        '/home_screen': (context) => const HomePage(),  
         '/tech_home': (context) => TechHomepage(),
       },
     );
   }
 }
+
+
+

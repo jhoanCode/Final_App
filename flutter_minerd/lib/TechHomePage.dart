@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'RegisterVisitPage.dart';
 import 'AboutPage.dart';
 import 'ListaVisitasPage.dart';
 import 'RegisterLocationPage.dart';
