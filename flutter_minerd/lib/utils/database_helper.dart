@@ -40,7 +40,8 @@ class DatabaseHelper {
     final db = await instance.database;
     return await db.insert('incidencias', incidencia.toMap());
   }
-Future<List<Incidencia>> getIncidencias() async {
+
+  Future<List<Incidencia>> getIncidencias() async {
     final db = await instance.database;
     final incidencias = await db.query('incidencias', orderBy: 'fecha DESC');
     return incidencias.map((json) => Incidencia.fromMap(json)).toList();
@@ -79,5 +80,10 @@ Future<List<Incidencia>> getIncidencias() async {
       where: 'id = ?',
       whereArgs: [id],
     );
+  }
+
+  Future<int> deleteAllIncidencias() async {
+    final db = await instance.database;
+    return await db.delete('incidencias');
   }
 }
