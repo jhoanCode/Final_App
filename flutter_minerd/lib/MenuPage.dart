@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'RegisterVisitPage.dart';
+import 'weather_screen.dart';
+import 'horoscope_screen.dart';
 
 class MenuPage extends StatelessWidget {
   @override
@@ -18,9 +20,26 @@ class MenuPage extends StatelessWidget {
             );
           },
         ),
-        
-
-        
+        MenuButton(
+          icon: Icons.wb_sunny,
+          label: 'Clima',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => WeatherScreen()),
+            );
+          },
+        ),
+        MenuButton(
+          icon: Icons.stars,
+          label: 'Horóscopo',
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HoroscopeScreen()),
+            );
+          },
+        ),
       ],
     );
   }
