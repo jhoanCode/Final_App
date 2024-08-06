@@ -11,9 +11,9 @@ class NewsDetailScreen extends StatelessWidget {
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.inAppWebView);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'No se pudo abrir el navegador $url';
     }
   }
 

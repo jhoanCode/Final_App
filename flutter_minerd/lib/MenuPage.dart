@@ -3,7 +3,6 @@ import 'noticias/news_screen.dart';
 import 'RegisterVisitPage.dart';
 import 'weather_screen.dart';
 import 'horoscope_screen.dart';
-import 'main.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});

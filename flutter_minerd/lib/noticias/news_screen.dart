@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'news_detail_screen.dart';
 import 'news_model.dart';
 import 'news_service.dart';
@@ -62,7 +61,7 @@ class _NewsScreenState extends State<NewsScreen> {
                 final news = newsList[index];
                 return Card(
                   margin: const EdgeInsets.all(10.0),
-                  color: Colors.black,
+                  color: Colors.lightBlueAccent,
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(10.0),
                     leading:
