@@ -21,8 +21,12 @@ class _RegisterLocationPageState extends State<RegisterLocationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Datos de Ubicación'),
+     appBar: AppBar(
+        title: Text(
+          'Datos de ubicacion', 
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue[900],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +36,16 @@ class _RegisterLocationPageState extends State<RegisterLocationPage> {
             children: [
               TextFormField(
                 controller: _latitudeController,
-                decoration: InputDecoration(labelText: 'Latitud'),
+                decoration: InputDecoration(
+                  labelText: 'Latitud',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -44,7 +57,16 @@ class _RegisterLocationPageState extends State<RegisterLocationPage> {
               SizedBox(height: 10),
               TextFormField(
                 controller: _longitudeController,
-                decoration: InputDecoration(labelText: 'Longitud'),
+                decoration: InputDecoration(
+                  labelText: 'Longitud',
+                  labelStyle: TextStyle(color: Colors.blue[900]),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[900]!),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue[700]!),
+                  ),
+                ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -68,7 +90,10 @@ class _RegisterLocationPageState extends State<RegisterLocationPage> {
                     );
                   }
                 },
-                child: Text('Siguiente'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                ),
+                child: Text('Siguiente', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
