@@ -56,7 +56,10 @@ class _HoroscopeScreenState extends State<HoroscopeScreen> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: _getHoroscope,
-                child: Text('Obtener Horóscopo'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                ),
+                child: Text('Obtener Horóscopo', style: TextStyle(color: Colors.white)),
               ),
               SizedBox(height: 16.0),
               HoroscopeUi(data: horoscopeData),

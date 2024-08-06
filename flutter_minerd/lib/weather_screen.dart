@@ -70,7 +70,10 @@ class _WeatherScreenState extends State<WeatherScreen> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: _getWeather,
-                child: Text('Obtener Clima'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                ),
+                child: Text('Obtener Clima', style: TextStyle(color: Colors.white)),
               ),
               SizedBox(height: 16.0),
               WeatherUi(data: weatherData),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'registro_incidencia_screen.dart';
 import 'lista_incidencias_screen.dart';
+import 'more.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     ListaIncidenciasScreen(),
     RegistroIncidenciaScreen(),
+    MorePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -38,6 +40,10 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Registrar',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About us',
           ),
         ],
         currentIndex: _selectedIndex,
